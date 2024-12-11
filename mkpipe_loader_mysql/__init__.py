@@ -33,7 +33,7 @@ class MysqlLoader:
         if 'etl_time' in df.columns:
             df = df.drop('etl_time')
 
-        df = df.withColumn('etl_time', F.lit(elt_start_time))
+        df = df.withColumn('etl_time', F.current_timestamp())
         return df
 
     @log_container(__file__)
