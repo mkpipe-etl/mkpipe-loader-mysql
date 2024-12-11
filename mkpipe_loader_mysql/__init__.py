@@ -1,5 +1,6 @@
 from urllib.parse import quote_plus
 from pyspark.sql import functions as F
+from pyspark.sql.types import TimestampType
 from mkpipe.utils import log_container, Logger
 from mkpipe.functions_spark import remove_partitioned_parquet, get_parser
 from mkpipe.functions_db import manifest_table_update
@@ -33,7 +34,7 @@ class MysqlLoader:
         if 'etl_time' in df.columns:
             df = df.drop('etl_time')
 
-        # df = df.withColumn('etl_time', F.lit(elt_start_time))
+        df = df.withColumn('etl_time', F.lit(elt_start_time).cast(TimestampType()))
         return df
 
     @log_container(__file__)
