@@ -20,7 +20,6 @@ class MysqlLoader:
         self.username = self.connection_params['user']
         self.password = quote_plus(str(self.connection_params['password']))
         self.database = self.connection_params['database']
-        self.schema = self.connection_params['schema']
 
         self.driver_name = 'mysql'
         self.driver_jdbc = 'com.mysql.cj.jdbc.Driver'
@@ -28,7 +27,7 @@ class MysqlLoader:
         script_dir = Path(__file__).parent  # Directory where the script is located
         self.settings.jars_path = str(script_dir / 'jars') + '/*'
 
-        self.jdbc_url = f'jdbc:{self.driver_name}://{self.host}:{self.port}/{self.database}?user={self.username}&password={self.password}&currentSchema={self.schema}'
+        self.jdbc_url = f'jdbc:{self.driver_name}://{self.host}:{self.port}/{self.database}?user={self.username}&password={self.password}'
 
     def add_custom_columns(self, df, elt_start_time):
         if 'etl_time' in df.columns:
