@@ -1,1 +1,1 @@
-include mkpipe_loader_postgres/jars/*
+include mkpipe_loader_mysql/jars/*

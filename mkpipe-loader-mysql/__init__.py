@@ -8,7 +8,7 @@ import time
 from pathlib import Path
 
 
-class PostgresLoader:
+class MysqlLoader:
     def __init__(self, config, settings):
         if isinstance(settings, dict):
             self.settings = PipeSettings(**settings)

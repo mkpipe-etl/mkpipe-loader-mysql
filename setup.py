@@ -1,15 +1,15 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='mkpipe-loader-postgres',
-    version='0.1.3',
+    name='mkpipe-loader-mysql',
+    version='0.1.1',
     license='Apache License 2.0',
     packages=find_packages(exclude=['tests', 'scripts', 'deploy']),
     install_requires=['mkpipe'],
     include_package_data=True,
     entry_points={
         'mkpipe.loaders': [
-            'mysql = mkpipe_loader_postgres:MysqlLoader',
+            'mysql = mkpipe_loader_mysql:MysqlLoader',
         ],
     },
     description='MySQL loader for mkpipe.',
