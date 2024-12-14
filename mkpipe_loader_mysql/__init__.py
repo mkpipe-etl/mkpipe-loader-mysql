@@ -26,10 +26,7 @@ class MysqlLoader:
         self.driver_name = 'mysql'
         self.driver_jdbc = 'com.mysql.cj.jdbc.Driver'
 
-        script_dir = Path(__file__).parent  # Directory where the script is located
-        self.settings.jars_path = str(script_dir / 'jars') + '/*'
         self.settings.driver_name = self.driver_name 
-
         self.jdbc_url = f'jdbc:{self.driver_name}://{self.host}:{self.port}/{self.database}?user={self.username}&password={self.password}'
 
         config = load_config()
