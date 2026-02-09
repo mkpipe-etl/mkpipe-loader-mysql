@@ -1,11 +1,12 @@
-from mkpipe.functions_spark import BaseLoader
+from mkpipe.spark import JdbcLoader
 
 
-class MysqlLoader(BaseLoader):
-    def __init__(self, config, settings):
-        super().__init__(
-            config,
-            settings,
-            driver_name='mysql',
-            driver_jdbc='com.mysql.cj.jdbc.Driver',
+class MysqlLoader(JdbcLoader, variant='mysql'):
+    driver_name = 'mysql'
+    driver_jdbc = 'com.mysql.cj.jdbc.Driver'
+
+    def build_jdbc_url(self):
+        return (
+            f'jdbc:{self.driver_name}://{self.host}:{self.port}/{self.database}'
+            f'?user={self.username}&password={self.password}'
         )
