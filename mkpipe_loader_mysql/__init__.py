@@ -6,6 +6,7 @@ JAR_PACKAGES = ['com.mysql:mysql-connector-j:9.1.0']
 class MysqlLoader(JdbcLoader, variant='mysql'):
     driver_name = 'mysql'
     driver_jdbc = 'com.mysql.cj.jdbc.Driver'
+    _dialect = 'mysql'
 
     def build_jdbc_url(self):
         return (
