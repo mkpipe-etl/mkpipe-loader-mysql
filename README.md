@@ -57,7 +57,7 @@ Control how data is written to MySQL:
 | Strategy | MySQL Behavior |
 |---|---|
 | `append` | Plain `INSERT` via JDBC (default for incremental) |
-| `replace` | Drop and recreate table, then insert (default for full). Use `if_exists: append` to preserve existing table |
+| `replace` | Drop and recreate table, then insert (default for full). With `if_exists: append`: truncate + insert (preserves schema/indexes) |
 | `upsert` | `INSERT ... ON DUPLICATE KEY UPDATE` via temp table |
 | `merge` | Same as upsert for MySQL |
 
@@ -91,7 +91,7 @@ Control how data is written to MySQL:
 | `write_partitions` | int | — | Coalesce DataFrame to N partitions before writing |
 | `write_strategy` | string | — | `append`, `replace`, `upsert`, `merge` |
 | `write_key` | list | — | Key columns for upsert/merge (required) |
-| `if_exists` | string | — | `replace` (drop+create) or `append` (preserve table). Inherits from settings |
+| `if_exists` | string | — | `replace` (drop+create) or `append` (preserve table, truncate+insert). Inherits from settings |
 | `dedup_columns` | list | — | Columns used for `mkpipe_id` hash deduplication |
 | `tags` | list | `[]` | Tags for selective pipeline execution |
 | `pass_on_error` | bool | `false` | Skip table on error instead of failing |
